@@ -165,6 +165,9 @@ def totals_tree(m):
     else:
         return tree(total_weight(m), [totals_tree(end(left(m))), totals_tree(end(right(m)))])
 
+    #improved
+    #return tree(total_weight(m), [totals_tree(end(left(m))), totals_tree(end(right(m)))])
+
 
 def replace_loki_at_leaf(t, lokis_replacement):
     """Returns a new tree where every leaf value equal to "loki" has
@@ -234,8 +237,7 @@ def has_path(t, word):
     False
     """
     assert len(word) > 0, 'no path for empty word.'
-    if is_leaf(t):
-        return label(t) == word[0] and len(word) == 1
+    
     if len(word) == 1:
         return label(t) == word[0]
     else:
@@ -349,8 +351,11 @@ def check_par():
     >>> lower_bound(x) != lower_bound(y) or upper_bound(x) != upper_bound(y)
     True
     """
-    r1 = interval(1, 1)  # Replace this line!
-    r2 = interval(1, 1)  # Replace this line!
+    r1 = interval(2, 2)  # Replace this line!
+    r2 = interval(3, 4)  # Replace this line!
+    #r1 = interval(a, b)
+    #r2 = interval(c, d)
+    #只要满足 a + c != b + d即可
     return r1, r2
 
 

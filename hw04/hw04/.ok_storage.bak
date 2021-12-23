@@ -8,3 +8,4 @@
 'mul_interval-correct', (3584, 66)
 'sub_interval-correct', (4096, 66)
 'div_interval-correct', (4608, 66)
+'check_par-correct', (5120, 66)
