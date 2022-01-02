@@ -163,7 +163,8 @@ class AICard(Card):
         >>> opponent_card.defense
         800
         """
-        "*** YOUR CODE HERE ***"
+        opponent_card.attack = max(0, opponent_card.attack - opponent_card.defense)
+        opponent_card.defense *= 2
 
     def copy(self):
         """
@@ -191,7 +192,9 @@ class TutorCard(Card):
         >>> len(player2.deck.cards) == initial_deck_length - 3
         True
         """
-        "*** YOUR CODE HERE ***"
+        del opponent.hand[0:3]
+        for _ in range(3):
+            opponent.draw()
         # You should add your implementation above this.
         print('{} discarded and re-drew 3 cards!'.format(opponent.name))
 
@@ -218,7 +221,9 @@ class TACard(Card):
         >>> opponent_card.defense
         300
         """
-        "*** YOUR CODE HERE ***"
+        tmp = opponent_card.attack
+        opponent_card.attack = opponent_card.defense
+        opponent_card.defense = tmp
 
     def copy(self):
         """
@@ -249,7 +254,16 @@ class InstructorCard(Card):
         0
         """
         orig_opponent_deck_length = len(opponent.deck.cards)
-        "*** YOUR CODE HERE ***"
+        for i in range(len(player.deck.cards)):
+            tmp = player.deck.cards[i].attack + player.deck.cards[i].defense
+            player.deck.cards[i].attack = tmp
+            player.deck.cards[i].defense = tmp
+        opponent_defense, opponent_attack = [], []
+        for card in opponent.hand:
+            opponent_attack.append(card.attack)
+            opponent_defense.append(card.defense)
+        opponent.deck.cards = [card for card in opponent.deck.cards if not (card.defense in opponent_defense or card.attack in opponent_attack) ]
+
         # You should add your implementation above this.
         discarded = orig_opponent_deck_length - len(opponent.deck.cards)
         if discarded:
