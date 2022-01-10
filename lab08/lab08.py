@@ -140,11 +140,19 @@ def add_d_leaves(t, v):
                     b.branches += [Tree(v)] * l
     helper(0, t)
 
+
     ##improved solution
     # def helper(l, tree):
     #     for b in tree.branches:
     #         helper(l + 1, b)
     #     tree.branches += [Tree(v)] * l
+    # helper(0, t)
+    ##OR
+    # def helper(l, tree):
+    #     l += 1
+    #     for b in tree.branches:               
+    #         helper(l, b)
+    #         b.branches += [Tree(v)] * l
     # helper(0, t)
 
 
@@ -166,8 +174,12 @@ def every_other(s):
     >>> singleton
     Link(4)
     """
-    "*** YOUR CODE HERE ***"
-
+    if s is not Link.empty and s.rest is not Link.empty:
+        if s.rest.rest is Link.empty:
+            s.rest = Link.empty
+        else:
+            every_other(s.rest.rest)
+            s.rest = s.rest.rest
 
 def prune_small(t, n):
     """Prune the tree mutatively, keeping only the n branches
@@ -186,11 +198,11 @@ def prune_small(t, n):
     >>> t3
     Tree(6, [Tree(1), Tree(3, [Tree(1), Tree(2)])])
     """
-    while ___________________________:
-        largest = max(_______________, key=____________________)
-        _________________________
-    for __ in _____________:
-        ___________________
+    while len(t.branches) > n:
+        largest = max([b for b in t.branches], key=lambda b: b.label)
+        t.branches.remove(largest)
+    for b in t.branches:
+        prune_small(b, n)
 
 
 class Link:
