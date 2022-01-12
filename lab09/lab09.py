@@ -287,10 +287,10 @@ def insert(link, value, index):
     if link == Link.empty:
         raise IndexError('Out of bounds!')
     elif index == 0:
-        # tmp = link.first
-        # link.first = value
-        # link.rest = Link(tmp, link.rest)
-        link = Link(value, link)
+        tmp = link.first
+        link.first = value
+        link.rest = Link(tmp, link.rest)
+        #link = Link(value, link)
         #直接link = Link(value, link)这么写为什么错了？？？
     else:
         insert(link.rest, value, index - 1)
@@ -402,6 +402,19 @@ def long_paths(t, n):
         for b in t.branches:
             res += [[t.label] + l for l in long_paths(b, n - 1)]
         return res
+    ##another solution DFS
+    # res = []
+    # def dfs(tree, depth, path):
+    #     nonlocal res
+    #     if tree.is_leaf():
+    #         if depth >= n:
+    #             res.append(path+[tree.label])
+    #     else:
+    #         for b in tree.branches:
+    #             dfs(b, depth + 1, path+[tree.label])
+    # dfs(t, 0, [])
+    # return res
+
 
 def is_palindrome(s):
     """Return whether a list of numbers s is a palindrome."""
