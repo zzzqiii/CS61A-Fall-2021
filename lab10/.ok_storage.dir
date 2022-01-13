@@ -1,0 +1,6 @@
+'over-or-under-correct', (0, 66)
+'make-adder-correct', (512, 66)
+'composed-correct', (1024, 66)
+'make-list-correct', (1536, 66)
+'remove-correct', (2048, 66)
+'What Would Scheme Display?-correct', (2560, 66)
