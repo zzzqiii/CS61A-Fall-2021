@@ -5,24 +5,18 @@
 (define (composed f g) (lambda (x) (f (g x))))
 
 (define lst (list (cons 1 nil) 2 (list 3 4) 5))
-;wrong answer, but don't know why wrong
-; (define (remove item lst)
-;     (cond
-;         ((= lst nil) nil)
-;         ((= (cdr lst) nil)
-;             (if (= (car lst) item) 
-;                 nil 
-;                 lst)
-;             )
-;         (else
-;             (if (= (car lst) item) 
-;               (remove item (cdr lst)) 
-;               (append (list (car lst)) (remove item (cdr lst)))
-;                 )
-;             )    
-;         )
-;     )
+
 (define (remove item lst)
-    (filter (lambda (x) (not (= x item))) lst)
+    (cond
+        ((null? lst) nil)
+        ((= item (car lst)) (remove item (cdr lst)))
+        (else
+            (cons (car lst) (remove item (cdr lst)))
+            )    
+        )
     )
+;another solution
+; (define (remove item lst)
+;     (filter (lambda (x) (not (= x item))) lst)
+;     )
 
