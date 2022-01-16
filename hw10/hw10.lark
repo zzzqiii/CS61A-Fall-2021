@@ -1,0 +1,20 @@
+?start: rstring
+rstring: "r\"" regex* "\""
+
+?regex: character | word | group | pipe | class | plus_quant | star_quant | num_quant
+group: "(" regex ")"
+pipe: (regex "|" regex)
+range: (LETTER "-" LETTER) | (NUMBER "-" NUMBER)
+class: "[" (range | character)+ "]"
+character: LETTER | NUMBER
+?hw10__basic: group | character | class
+plus_quant: hw10__basic "+"
+star_quant: hw10__basic "*"
+num_quant: hw10__basic (("{" NUMBER "}") | ("{" (NUMBER "," NUMBER | NUMBER "," | "," NUMBER) "}"))
+word: WORD
+
+%ignore /\s+/
+%import common.LETTER
+%import common.NUMBER
+%import common.WORD
+

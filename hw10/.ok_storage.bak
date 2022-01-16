@@ -1,0 +1,6 @@
+'regex_grouping-correct', (0, 66)
+'regex_classes-correct', (512, 66)
+'regex_quantifiers-correct', (1024, 66)
+'small-correct', (1536, 66)
+'parent-correct', (2048, 66)
+'size-correct', (2560, 66)
